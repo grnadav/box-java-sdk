@@ -11,6 +11,7 @@ import com.eclipsesource.json.JsonValue;
  */
 @BoxResourceType("event")
 public class BoxEvent extends BoxResource {
+    private JsonObject originJson;
     private BoxResource.Info sourceInfo;
     private BoxEvent.Type type;
     private JsonObject sourceJSON;
@@ -32,6 +33,7 @@ public class BoxEvent extends BoxResource {
 
     BoxEvent(BoxAPIConnection api, JsonObject jsonObject) {
         super(api, jsonObject.get("event_id").asString());
+        this.originJson = jsonObject;
 
         for (JsonObject.Member member : jsonObject) {
             if (member.getValue().isNull()) {
@@ -40,6 +42,14 @@ public class BoxEvent extends BoxResource {
 
             this.parseJsonMember(member);
         }
+    }
+
+    /**
+     * Added by SkyFormation
+     * @return the raw JSON object the API received for this event
+     */
+    public JsonObject getOriginJson() {
+        return originJson;
     }
 
     /**
@@ -744,7 +754,12 @@ public class BoxEvent extends BoxResource {
         /**
          * An OAuth2 access token was created for a user.  This is an enterprise-only event.
          */
-        USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE;
+        USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE,
+
+        /**
+         * Undocumented event type found by SkyFormation. Similar to resource view event
+         */
+        CONTENT_ACCESS
 
     }
 }
