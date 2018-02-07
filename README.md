@@ -1,5 +1,18 @@
 [![Project Status](http://opensource.box.com/badges/active.svg)](http://opensource.box.com/badges)
 
+SkyFormation Modification
+=========================
+
+How to build:
+1. run `gradle build` - builds jar
+2. run `gradle install` - generates pom.xml file we need
+3. rename build/poms/default-pom.xml to pom.xml
+4. upload jar from build/libs/box-java-sdk-<version>.jar to our nexus in thirdparty repository
+
+What we modified:
+1. Added source JSON in BoxEvent class
+2. Some enum values in BoxEvent class
+
 Box Java SDK
 ============
 

@@ -45,11 +45,11 @@ public class BoxEvent extends BoxResource {
     }
 
     /**
-     * Added by SkyFormation
+     * Added by SkyFormation.
      * @return the raw JSON object the API received for this event
      */
     public JsonObject getOriginJson() {
-        return originJson;
+        return this.originJson;
     }
 
     /**
